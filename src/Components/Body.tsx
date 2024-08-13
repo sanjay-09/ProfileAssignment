@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import {productsTypes} from '../product.types';
 import Products from "./Products";
 import Pagination from "./Pagination";
+import { ProductType } from "../product.types";
 
 const Body=()=>{
-    const [products,setProducts]=useState<productsTypes[]>([]);
+    const [products,setProducts]=useState<ProductType[]>([]);
     const [page,setPage]=useState(1);
 
 
@@ -26,7 +26,6 @@ const Body=()=>{
 
         }
         const responseData=await responseObject.json();
-        console.log(responseData.products);
         setProducts(responseData.products)
 
     }
