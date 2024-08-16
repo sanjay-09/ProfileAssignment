@@ -36,7 +36,7 @@ const Header = () => {
     }
 
     return (
-        <div className="w-full sm:h-[60px] h-[50px] bg-blue-500 text-white fixed z-[999] top-0">
+        <div className="min-w-full sm:h-[60px] h-[50px] bg-blue-500 text-white fixed z-[999] top-0">
             <div className="flex justify-between pt-2 items-center sm:px-2 w-full">
 
                 <h1 className="font-extrabold sm:text-3xl cursor-pointer" onClick={()=>{
