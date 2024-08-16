@@ -44,7 +44,7 @@ const Header = () => {
                 }}>Profile.FYI</h1>
 
                 <div>
-                    <input type="text" className="w-[300px] px-2 py-1 rounded-md text-black" placeholder="Enter the Product Name......" value={input} onChange={(e)=>{
+                    <input type="text" className="sm:w-[300px] w-[150px] px-2 py-1 rounded-md text-black" placeholder="Enter the Product Name......" value={input} onChange={(e)=>{
                         setInput(e.target.value);
                     }}/>
                 </div>
