@@ -26,8 +26,6 @@ const productSlice = createSlice({
             } 
             else{
                 state.cart[existingProdIdx].quantity!+=1;
-
-
                 // Update the cart price based on the new quantity
                 state.cartPrice=state.cartPrice+parseInt(state.cart[existingProdIdx].newPrice);
                
@@ -40,19 +38,22 @@ const productSlice = createSlice({
         removeItem: (state, action: PayloadAction<number>) => {
             const itemIdx = state.cart.findIndex((item) => item.id === action.payload);
             if (itemIdx >= 0) {
+                state.cartPrice=state.cartPrice-parseInt(state.cart[itemIdx].newPrice);
                 state.cart.splice(itemIdx, 1);
             }
-            state.cartPrice=state.cartPrice-parseInt(state.cart[itemIdx].newPrice);
+           
             
         },
         removeItemQuantity:(state,action:PayloadAction<number>)=>{
             const itemIdx=state.cart.findIndex((item)=>{
                 return item.id===action.payload
             })
+            
           
             if (itemIdx >= 0 && state.cart[itemIdx].quantity===1) {
-                state.cart.splice(itemIdx, 1);
                 state.cartPrice=state.cartPrice-parseInt(state.cart[itemIdx].newPrice);
+                state.cart.splice(itemIdx, 1);
+             
 
             }
             else if(itemIdx >= 0 && state.cart[itemIdx].quantity!>1){
