@@ -69,7 +69,7 @@ const Header = () => {
                     </div>
                 </div>
 
-                <div className="sm:hidden block">
+                <div className="sm:hidden block pr-4">
                <HamburgerMenu/>
 
                 </div>
