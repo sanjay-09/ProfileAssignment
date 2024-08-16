@@ -59,7 +59,7 @@ const Sliders=()=>{
        }
       
       return (
-        <div className="slider-container bg-blue-400 text-white">
+        <div className="slider-container bg-blue-400 text-white p-2 rounded-lg">
           <Slider {...settings}>
             <div className=" mr-2 font-thin">
             <Price handleChange={handleChange}/>
