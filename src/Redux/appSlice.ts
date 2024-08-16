@@ -1,18 +1,28 @@
-import { ProductType } from './../product.types';
+import data from '../db/db';
+import { newProductType, ProductType } from './../product.types';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const productSlice = createSlice({
     name: 'productSlice',
     initialState: {
-        cart: [] as ProductType[],
+        cart: [] as newProductType[],
         cartPrice: 0,
+        dataFiltered:data as newProductType[]
     },
     reducers: {
-        addItem: (state, action: PayloadAction<ProductType>) => {
-            const newProduct = { ...action.payload, selectedQuantity: 1 };
+        addData:(state,action: PayloadAction<newProductType>)=>{
+            //@ts-expect-error
+            state.dataFiltered=action.payload;
+            console.log(state.dataFiltered);
+
+
+
+        },
+        addItem: (state, action: PayloadAction<newProductType>) => {
+            const newProduct = { ...action.payload };
             const existingProdIdx = state.cart.findIndex((item) => item.id === newProduct.id);
             if (existingProdIdx === -1) {
                 state.cart.push(newProduct);
-                state.cartPrice += newProduct.price;
+                state.cartPrice +=parseInt(newProduct.newPrice);
             } 
 
         },
@@ -48,4 +58,4 @@ const productSlice = createSlice({
     }
 });
 export default productSlice.reducer;
-export const { addItem, removeItem, increaseQuantity, decreaseQuantity } = productSlice.actions;
+export const { addItem, addData, removeItem, increaseQuantity, decreaseQuantity } = productSlice.actions;

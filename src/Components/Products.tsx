@@ -1,13 +1,19 @@
-import { ProductType } from "../product.types";
+import { newProductType, ProductType } from "../product.types";
 import Items from "./Items";
+import SideBar from "./SideBar";
 
 type ProdTypes={
-    products:ProductType[]
+    products:newProductType[]
 }
 
 const Products:React.FC<ProdTypes>=({products})=>{
     return(
-        <div className="grid  sm:grid-cols-4 grid-cols-1 gap-4 container mx-auto px-8 mt-2 ">
+        <div className="flex mt-10 ">
+           <div className="w-[15%] ">
+            <SideBar/>
+
+           </div>
+            <div className="grid  sm:grid-cols-4 grid-cols-1 gap-2 w-[85%] pr-2 container mx-auto">
             {
                products.map((product)=>{
                return  <Items product={product}/>
@@ -15,6 +21,7 @@ const Products:React.FC<ProdTypes>=({products})=>{
                 
             }
 
+        </div>
         </div>
     )
 }

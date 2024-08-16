@@ -1,3 +1,5 @@
+import { randProduct } from '@ngneat/falso';
+console.log("rand",randProduct());
 export type ProductType = {
     id: number;
     title: string;

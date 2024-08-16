@@ -8,7 +8,7 @@ function App() {
 
   return (
 
-    <div className="w-screen pt-[60px] sm:h-[60px] h-[50px]">
+    <div className="w-screen pt-[60px]">
       
       <Body />
 

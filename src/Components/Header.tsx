@@ -12,10 +12,14 @@ const Header = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="w-full sm:h-[60px] h-[50px] bg-blue-700 text-white fixed z-[999] top-0">
-            <div className="sm:container sm:mx-auto px-8 flex justify-between pt-2 ">
+        <div className="w-full sm:h-[60px] h-[50px] bg-blue-500 text-white fixed z-[999] top-0">
+            <div className="flex justify-between pt-2 ">
 
                 <h1 className="font-extrabold sm:text-4xl  text-xl">Profile.FYI</h1>
+
+                <div>
+                    <input type="text"/>
+                </div>
 
 
 
