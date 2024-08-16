@@ -29,8 +29,8 @@ const productSlice = createSlice({
 
 
                 // Update the cart price based on the new quantity
-                state.cartPrice*=2;
-                console.log(state.cart);
+                state.cartPrice=state.cartPrice+parseInt(state.cart[existingProdIdx].newPrice);
+               
                
               
                
@@ -42,7 +42,40 @@ const productSlice = createSlice({
             if (itemIdx >= 0) {
                 state.cart.splice(itemIdx, 1);
             }
+            state.cartPrice=state.cartPrice-parseInt(state.cart[itemIdx].newPrice);
+            
         },
+        removeItemQuantity:(state,action:PayloadAction<number>)=>{
+            const itemIdx=state.cart.findIndex((item)=>{
+                return item.id===action.payload
+            })
+          
+            if (itemIdx >= 0 && state.cart[itemIdx].quantity===1) {
+                state.cart.splice(itemIdx, 1);
+                state.cartPrice=state.cartPrice-parseInt(state.cart[itemIdx].newPrice);
+
+            }
+            else if(itemIdx >= 0 && state.cart[itemIdx].quantity!>1){
+                state.cart[itemIdx].quantity!-=1;
+                state.cartPrice=state.cartPrice-parseInt(state.cart[itemIdx].newPrice);
+
+            }
+            
+        },
+        addItemQuantity:(state,action:PayloadAction<number>)=>{
+            
+            const cartIndex=state.cart.findIndex((item)=>{
+                return item.id===action.payload
+            });
+            console.log(cartIndex)
+            if(cartIndex!==-1){
+                state.cart[cartIndex].quantity!+=1;
+                state.cartPrice=state.cartPrice+parseInt(state.cart[cartIndex].newPrice);
+
+            }
+
+        }
+
         
 
 
@@ -50,4 +83,4 @@ const productSlice = createSlice({
     }
 });
 export default productSlice.reducer;
-export const { addItem, addData, removeItem } = productSlice.actions;
+export const { addItem, addData, removeItem,removeItemQuantity,addItemQuantity } = productSlice.actions;

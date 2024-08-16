@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { MinusCircle, PlusCircle } from 'lucide-react'
 import { toast, Toaster } from 'react-hot-toast'
+import { addItemQuantity, removeItem, removeItemQuantity } from '../Redux/appSlice'
 type ProductDetailsFooterProps = {
     product: newProductType
 }
@@ -18,7 +19,7 @@ const ProductDetailsFooter: React.FC<ProductDetailsFooterProps> = ({ product }: 
                     <MinusCircle  className="rounded-full bg-white w-6 border border-gray-400 hover:bg-gray-300 drop-shadow-lg "
                         onClick={() => {
                             //@ts-ignore
-                            dispatch(decreaseQuantity(product.id))
+                            dispatch(removeItemQuantity(product.id))
                             toast('Item removed from cart!',
                                 {
                                     icon: '❌',
@@ -38,7 +39,7 @@ const ProductDetailsFooter: React.FC<ProductDetailsFooterProps> = ({ product }: 
                     <PlusCircle className="rounded-full bg-white w-6 border border-gray-400 hover:bg-gray-300 drop-shadow-lg "
                         onClick={() => {
                             //@ts-ignore
-                            dispatch(increaseQuantity(product.id));
+                            dispatch(addItemQuantity(product.id));
                             toast.success('Item added to cart!')
                         }
                         } />
@@ -46,7 +47,10 @@ const ProductDetailsFooter: React.FC<ProductDetailsFooterProps> = ({ product }: 
             </div>
 
             <button className="font-bold hover:text-blue-400 transition-colors">SAVE FOR LATER</button>
-            <button className="font-bold hover:text-blue-400 transition-colors">REMOVE</button>
+            <button className="font-bold hover:text-blue-400 transition-colors" onClick={()=>{
+                dispatch(removeItem(product.id));
+
+            }}>REMOVE</button>
         </div>
     )
 }

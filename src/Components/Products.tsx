@@ -15,7 +15,7 @@ const Products:React.FC<ProdTypes>=({products})=>{
          <SideBar />
          
          </div>
-         <div className="sm:hidden block">
+         <div className="sm:hidden block w-full px-2 rounded-lg">
             <Sliders/>
          </div>
 
