@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import CartProductCard from "../Components/CartProductCard"
 import PriceDetailsCard from "../Components/PriceDetailsCard"
 import { RootState } from "../Redux/appStore"
 import React from "react"
-import { ProductType } from "../product.types"
-import { decreaseQuantity, increaseQuantity } from "../Redux/appSlice"
+
 
 
 
@@ -14,13 +13,14 @@ import { decreaseQuantity, increaseQuantity } from "../Redux/appSlice"
 
 const CartPage = () => {
   const selectedProducts = useSelector((state: RootState) => state.productSlice.cart);
+  console.log('selected',selectedProducts);
   return (
     
     <div className="bg-gray-300 w-[100vw] h-100%">
       <div className="container mx-auto pt-[9vh] h-100%">
-        <div className="flex justify-between items-start gap-4 ">
-          <div className="product_details bg-neutral-200 h-full min-w-[70vw] rounded-sm mt-2 relative flex flex-col">
-            <div className="flex-grow">
+        <div className="flex  sm:flex-row flex-col justify-between items-start gap-4 w-full ">
+          <div className="product_details bg-neutral-200 sm:w-[70%] w-full h-full  rounded-sm mt-2 relative flex flex-col">
+            <div className="flex-grow ">
               {selectedProducts.map((product) =>
                 <React.Fragment key={product.id}>
                   <CartProductCard {...product} />
@@ -36,7 +36,7 @@ const CartPage = () => {
             </div>
           </div>
 
-          <div className="price_details min-h-[30vh] min-w-[20vw] bg-white mt-4 rounded-lg sticky top-12">
+          <div className="price_details min-h-[30vh] sm:w-[30%] w-full bg-white mt-4 rounded-lg sticky top-12">
             <PriceDetailsCard />
           </div>
         </div>

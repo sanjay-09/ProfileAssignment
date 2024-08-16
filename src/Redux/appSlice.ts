@@ -1,5 +1,5 @@
 import data from '../db/db';
-import { newProductType, ProductType } from './../product.types';
+import { newProductType } from './../product.types';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const productSlice = createSlice({
     name: 'productSlice',
@@ -18,12 +18,23 @@ const productSlice = createSlice({
 
         },
         addItem: (state, action: PayloadAction<newProductType>) => {
-            const newProduct = { ...action.payload };
+            let newProduct = { ...action.payload,quantity:1};
             const existingProdIdx = state.cart.findIndex((item) => item.id === newProduct.id);
             if (existingProdIdx === -1) {
                 state.cart.push(newProduct);
                 state.cartPrice +=parseInt(newProduct.newPrice);
             } 
+            else{
+                state.cart[existingProdIdx].quantity!+=1;
+
+
+                // Update the cart price based on the new quantity
+                state.cartPrice*=2;
+                console.log(state.cart);
+               
+              
+               
+            }
 
         },
         removeItem: (state, action: PayloadAction<number>) => {
@@ -32,30 +43,11 @@ const productSlice = createSlice({
                 state.cart.splice(itemIdx, 1);
             }
         },
-        increaseQuantity: (state, action: PayloadAction<number>) => {
-
-            const itemIdx = state.cart.findIndex((item) => item.id === action.payload);
-            if (itemIdx >= 0) {
-                state.cart[itemIdx].selectedQuantity += 1;
-                state.cartPrice += state.cart[itemIdx].price;
-            }
-        },
-        decreaseQuantity: (state, action: PayloadAction<number>) => {
-
-            const itemIdx = state.cart.findIndex((item) => item?.id === action.payload);
-            if (itemIdx >= 0) {
-                state.cart[itemIdx].selectedQuantity -= 1;
-                state.cartPrice -= state.cart[itemIdx].price;
-
-                if (state.cart[itemIdx].selectedQuantity === 0) {
-                    state.cart.splice(itemIdx, 1);
-                }
-            }
-        }
+        
 
 
 
     }
 });
 export default productSlice.reducer;
-export const { addItem, addData, removeItem, increaseQuantity, decreaseQuantity } = productSlice.actions;
+export const { addItem, addData, removeItem } = productSlice.actions;

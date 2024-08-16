@@ -16,6 +16,7 @@ const Items: React.FC<Item> = ({ product }) => {
 
 
     const handleAddClick = () => {
+        console.log('product',product);
         dispatch(addItem(product));
         toast.success('Item added to cart!')
     }
@@ -37,7 +38,7 @@ const Items: React.FC<Item> = ({ product }) => {
         <>
             <Toaster />
             <div className=" shadow-xl rounded-md p-2 cursor-pointer" key={product.id} >
-                <img src={product.img} alt="item-image" className="h-[300px] w-full shadow-md rounded-md object-contain bg-white" />
+                <img src={product.img} alt="item-image" className="sm:h-[300px] h-[200px] w-full shadow-md rounded-md object-contain bg-white" />
                 <motion.div className="mt-4 bg-white p-2"
                     whileHover={{ y: -25 }}>
                     <h1 className="text-xl hover:text-blue-500 cursor-pointer truncate">{product.title}</h1>

@@ -7,12 +7,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import CartPage from './Routes/CartPage.tsx';
-import Header from './Components/Header.tsx';
+
 
 import { Provider } from "react-redux"
 import { appStore } from "./Redux/appStore"
 import GlobalLayout from './Routes/GlobalLayout.tsx';
-import { Toaster } from 'react-hot-toast';
+
 
 const router = createBrowserRouter([
 

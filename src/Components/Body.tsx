@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+
 import Products from "./Products";
-import Pagination from "./Pagination";
-import { newProductType, ProductType } from "../product.types";
-import data from "../db/db";
+
 import { useSelector } from "react-redux";
-import { AppStore, RootState } from "../Redux/appStore";
+import { RootState } from "../Redux/appStore";
 import { randProduct } from '@ngneat/falso';
 
 const Body=()=>{

@@ -1,10 +1,9 @@
-import { useState } from "react";
-import Accordian from "./Accordian";
+
 import Price from "../SideBar/Price";
 import data from "../db/db";
 import { useDispatch } from "react-redux";
 import { addData } from "../Redux/appSlice";
-import { newProductType } from "../product.types";
+
 import Color from "../SideBar/Color";
 import Category from "../SideBar/Category";
 const SideBar = () => {
@@ -62,6 +61,10 @@ const SideBar = () => {
       </div>
       <div className="mb-2 px-2 border-b-[0.5px] border-gray-300">
         <Color handleChange={handleChange}/>
+
+      </div>
+      <div className="mb-2 px-2 border-b-[0.5px] border-gray-300">
+        <Category handleChange={handleChange}/>
 
       </div>
       <div className="mb-2 px-2 border-b-[0.5px] border-gray-300">
